@@ -495,16 +495,6 @@ date,scheme_code,fund_name,transaction_type,amount,nav,units,folio_number,note
 
 ---
 
-## 👥 Team
-
-**VTU Internship 2026 — Team 8 (Java)**
-
-| Member | Role |
-|--------|------|
-| Faishal | Full-Stack Developer |
-
----
-
 ## 📜 License
 
 This project is developed as part of the VTU Internship Program 2026.
