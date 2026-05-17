@@ -104,12 +104,12 @@ function shortMonth(dateStr) {
 }
 
 const CHART_COLORS = [
-  '#b4ff45', '#a78bfa', '#22d3ee', '#f87171', '#fb923c',
+  '#34d399', '#a78bfa', '#22d3ee', '#f87171', '#fb923c',
   '#e63946', '#A8DADC', '#457B9D', '#F4A261', '#264653',
 ];
 
 const CATEGORY_COLORS = {
-  EQUITY: '#b4ff45', Equity: '#b4ff45',
+  EQUITY: '#34d399', Equity: '#34d399',
   DEBT: '#fb923c',   Debt: '#fb923c',
   HYBRID: '#60a5fa', Hybrid: '#60a5fa',
   SOLUTION: '#a78bfa', Solution: '#a78bfa',
@@ -366,14 +366,14 @@ function PortfolioGrowthChart({ growthData }) {
         <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="valueGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#b4ff45" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#b4ff45" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#34d399" stopOpacity={0.30} />
+              <stop offset="95%" stopColor="#34d399" stopOpacity={0.01} />
             </linearGradient>
           </defs>
           <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#6B6B7B' }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fontSize: 11, fill: '#6B6B7B' }} axisLine={false} tickLine={false} tickFormatter={formatCurrency} />
           <Tooltip content={<CustomTooltip />} />
-          <Area type="monotone" dataKey="currentValue" stroke="#b4ff45" strokeWidth={2} fill="url(#valueGrad)" name="Current Value" />
+          <Area type="monotone" dataKey="currentValue" stroke="#34d399" strokeWidth={2} fill="url(#valueGrad)" name="Current Value" />
         </AreaChart>
       </ResponsiveContainer>
     </>
@@ -409,15 +409,15 @@ function InvestedVsCurrentChart({ growthData }) {
               <stop offset="95%" stopColor="#a78bfa" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="valGrad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#b4ff45" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#b4ff45" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#34d399" stopOpacity={0.22} />
+              <stop offset="95%" stopColor="#34d399" stopOpacity={0.01} />
             </linearGradient>
           </defs>
           <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#6B6B7B' }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fontSize: 10, fill: '#6B6B7B' }} axisLine={false} tickLine={false} tickFormatter={formatCurrency} />
           <Tooltip content={<CustomTooltip />} />
           <Area type="monotone" dataKey="investedValue" stroke="#a78bfa" strokeWidth={2} fill="url(#invGrad2)" name="Invested" />
-          <Area type="monotone" dataKey="currentValue"  stroke="#b4ff45" strokeWidth={2} fill="url(#valGrad2)" name="Current Value" />
+          <Area type="monotone" dataKey="currentValue"  stroke="#34d399" strokeWidth={2} fill="url(#valGrad2)" name="Current Value" />
         </AreaChart>
       </ResponsiveContainer>
     </>
@@ -576,7 +576,7 @@ function FundPerformanceChart({ holdings }) {
           <Tooltip content={<CustomTooltip formatter={(v) => v.toFixed(2) + '%'} />} />
           <ReferenceLine y={0} stroke="rgba(255,255,255,0.1)" />
           <Bar dataKey="return" name="Return %" radius={[4, 4, 0, 0]}>
-            {barData.map((entry, i) => <Cell key={i} fill={entry.return >= 0 ? '#b4ff45' : '#f87171'} />)}
+            {barData.map((entry, i) => <Cell key={i} fill={entry.return >= 0 ? '#34d399' : '#f87171'} />)}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
@@ -987,14 +987,14 @@ export default function DashboardPage() {
             transition={{ duration: 0.5, type: 'spring' }}
           >
             <motion.div className="empty-icon" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}>
-              <Target size={54} color="var(--ww-accent,#b4ff45)" />
+              <Target size={54} color="var(--ww-accent,#34d399)" />
             </motion.div>
             <h2>No Investments Yet</h2>
             <p>Start logging transactions to generate portfolio analytics and wealth projections.</p>
             <motion.button
               className="btn-goto-txns"
               onClick={() => navigate('/dashboard/transactions')}
-              whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(180,255,69,0.35)' }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
             >
               + Add First Transaction

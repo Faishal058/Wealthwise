@@ -62,7 +62,7 @@ export default function NotificationsPage() {
         {['All', 'Unread', 'Info', 'Watch', 'Action'].map(f => (
           <button key={f} onClick={() => setFilter(f)} style={{
             padding: '0.375rem 1rem', borderRadius: '9999px', border: `1px solid ${filter === f ? 'var(--ww-accent)' : 'var(--ww-border-subtle)'}`,
-            background: filter === f ? 'rgba(180,255,69,0.12)' : 'transparent',
+            background: filter === f ? 'rgba(52,211,153,0.10)' : 'transparent',
             color: filter === f ? 'var(--ww-accent-muted)' : 'rgba(255,255,255,0.6)',
             fontSize: '0.8125rem', fontWeight: 500, cursor: 'pointer',
           }}>{f}</button>
@@ -77,8 +77,8 @@ export default function NotificationsPage() {
             const style = SEVERITY_STYLE[alert.severity] || SEVERITY_STYLE.Info;
             return (
               <article key={alert.id} style={{
-                borderRadius: '24px', border: `1px solid ${alert.isRead ? 'var(--ww-border-subtle)' : 'rgba(180,255,69,0.15)'}`,
-                background: alert.isRead ? '#071510' : 'rgba(180,255,69,0.04)',
+                borderRadius: '24px', border: `1px solid ${alert.isRead ? 'var(--ww-border-subtle)' : 'rgba(52,211,153,0.14)'}`,
+                background: alert.isRead ? 'rgba(13,22,18,0.85)' : 'rgba(52,211,153,0.03)',
                 padding: '1.25rem', opacity: alert.isRead ? 0.65 : 1,
                 transition: 'opacity 0.2s',
               }}>

@@ -5,6 +5,7 @@ import com.wealthwise.service.HoldingsService;
 import com.wealthwise.service.XirrService;
 import com.wealthwise.repository.InvestmentLotRepository;
 import com.wealthwise.repository.InvestmentTransactionRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -224,6 +225,7 @@ public class HoldingsController {
      */
     @Transactional
     @DeleteMapping("/{schemeCode}")
+    @CacheEvict(value = "holdings", allEntries = true)
     public ResponseEntity<?> deleteHolding(@PathVariable String schemeCode, Authentication auth) {
         UUID userId = UUID.fromString(auth.getName());
         lotRepo.deleteByUserIdAndSchemeCode(userId, schemeCode);

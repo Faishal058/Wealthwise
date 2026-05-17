@@ -6,6 +6,7 @@ import com.wealthwise.repository.InvestmentLotRepository;
 import com.wealthwise.repository.InvestmentTransactionRepository;
 import com.wealthwise.repository.NavDailyRepository;
 import com.wealthwise.repository.SchemeMasterRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -132,6 +133,7 @@ public class TransactionController {
     }
 
     @PostMapping
+    @CacheEvict(value = "holdings", allEntries = true)
     public ResponseEntity<?> create(@RequestBody Map<String, Object> body, Authentication auth) {
         UUID userId = UUID.fromString(auth.getName());
 
@@ -180,6 +182,7 @@ public class TransactionController {
      * Accepts a multipart/form-data file named "file".
      */
     @PostMapping("/import-csv")
+    @CacheEvict(value = "holdings", allEntries = true)
     public ResponseEntity<?> importCsv(@RequestParam("file") MultipartFile file, Authentication auth) {
         UUID userId = UUID.fromString(auth.getName());
 

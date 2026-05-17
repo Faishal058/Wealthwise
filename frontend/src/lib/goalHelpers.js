@@ -1,13 +1,16 @@
+import React from 'react';
+import { Home, GraduationCap, Heart, Palmtree, Car, Plane, ShieldAlert, Coins } from 'lucide-react';
+
 // ── Goal type definitions ─────────────────────────────────────────────────
 export const GOAL_TYPES = [
-  { type: 'HOUSE',      icon: '🏠', label: 'House Purchase',  inflationRate: 0.07, suggestedYears: 10, defaultPriority: 'MEDIUM', expectedReturn: 0.12 },
-  { type: 'EDUCATION',  icon: '🎓', label: 'Child Education', inflationRate: 0.11, suggestedYears: 15, defaultPriority: 'HIGH',   expectedReturn: 0.12 },
-  { type: 'MARRIAGE',   icon: '💍', label: 'Marriage',        inflationRate: 0.08, suggestedYears: 20, defaultPriority: 'HIGH',   expectedReturn: 0.12 },
-  { type: 'RETIREMENT', icon: '🏖️', label: 'Retirement',     inflationRate: 0.06, suggestedYears: 25, defaultPriority: 'HIGH',   expectedReturn: 0.11 },
-  { type: 'CAR',        icon: '🚗', label: 'Car Purchase',    inflationRate: 0.06, suggestedYears: 5,  defaultPriority: 'MEDIUM', expectedReturn: 0.10 },
-  { type: 'VACATION',   icon: '✈️', label: 'Vacation',        inflationRate: 0.06, suggestedYears: 2,  defaultPriority: 'LOW',    expectedReturn: 0.08 },
-  { type: 'EMERGENCY',  icon: '🏥', label: 'Emergency Fund',  inflationRate: 0.06, suggestedYears: 1,  defaultPriority: 'HIGH',   expectedReturn: 0.07 },
-  { type: 'CUSTOM',     icon: '💰', label: 'Custom Goal',     inflationRate: 0.06, suggestedYears: 5,  defaultPriority: 'MEDIUM', expectedReturn: 0.12 },
+  { type: 'HOUSE',      icon: React.createElement(Home, { size: 18 }),          label: 'House Purchase',  inflationRate: 0.07, suggestedYears: 10, defaultPriority: 'MEDIUM', expectedReturn: 0.12 },
+  { type: 'EDUCATION',  icon: React.createElement(GraduationCap, { size: 18 }), label: 'Child Education', inflationRate: 0.11, suggestedYears: 15, defaultPriority: 'HIGH',   expectedReturn: 0.12 },
+  { type: 'MARRIAGE',   icon: React.createElement(Heart, { size: 18 }),         label: 'Marriage',        inflationRate: 0.08, suggestedYears: 20, defaultPriority: 'HIGH',   expectedReturn: 0.12 },
+  { type: 'RETIREMENT', icon: React.createElement(Palmtree, { size: 18 }),      label: 'Retirement',     inflationRate: 0.06, suggestedYears: 25, defaultPriority: 'HIGH',   expectedReturn: 0.11 },
+  { type: 'CAR',        icon: React.createElement(Car, { size: 18 }),           label: 'Car Purchase',    inflationRate: 0.06, suggestedYears: 5,  defaultPriority: 'MEDIUM', expectedReturn: 0.10 },
+  { type: 'VACATION',   icon: React.createElement(Plane, { size: 18 }),         label: 'Vacation',        inflationRate: 0.06, suggestedYears: 2,  defaultPriority: 'LOW',    expectedReturn: 0.08 },
+  { type: 'EMERGENCY',  icon: React.createElement(ShieldAlert, { size: 18 }),   label: 'Emergency Fund',  inflationRate: 0.06, suggestedYears: 1,  defaultPriority: 'HIGH',   expectedReturn: 0.07 },
+  { type: 'CUSTOM',     icon: React.createElement(Coins, { size: 18 }),         label: 'Custom Goal',     inflationRate: 0.06, suggestedYears: 5,  defaultPriority: 'MEDIUM', expectedReturn: 0.12 },
 ];
 
 // ── Asset allocation by time horizon ─────────────────────────────────────

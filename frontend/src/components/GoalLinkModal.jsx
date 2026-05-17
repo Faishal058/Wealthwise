@@ -132,7 +132,7 @@ export default function GoalLinkModal({ goal, onClose, onLinked }) {
                       <motion.div
                         key={h.schemeCode}
                         className="glm-holding-row"
-                        style={{ borderColor: linked ? 'rgba(180,255,69,.3)' : 'var(--ww-border)' }}
+                        style={{ borderColor: linked ? 'rgba(52,211,153,.25)' : 'var(--ww-border)' }}
                         layout
                       >
                         {/* Fund info */}

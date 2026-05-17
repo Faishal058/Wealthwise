@@ -37,7 +37,7 @@ export default function ResetPasswordPage() {
     return (
       <AuthShell eyebrow="Done" title="Password updated"
         footer={<p style={{ textAlign: 'center', fontSize: '0.875rem', color: 'var(--ww-text-muted)' }}><Link to="/login" style={{ fontWeight: 600, color: 'var(--ww-accent-muted)' }}>Sign in with your new password</Link></p>}>
-        <div style={{ borderRadius: '30px', border: '1px solid rgba(180,255,69,0.20)', background: 'rgba(180,255,69,0.10)', padding: '1.5rem', textAlign: 'center' }}>
+        <div style={{ borderRadius: '30px', border: '1px solid rgba(52,211,153,0.18)', background: 'rgba(52,211,153,0.07)', padding: '1.5rem', textAlign: 'center' }}>
           <div style={{ margin: '0 auto', display: 'flex', height: '4rem', width: '4rem', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', background: 'var(--ww-accent)', fontSize: '1.5rem', fontWeight: 900, color: 'var(--ww-accent-dark)' }}>✓</div>
           <h2 style={{ marginTop: '1.25rem', fontSize: '1.875rem', fontWeight: 600, color: '#fff' }}>All set!</h2>
           <p className="ww-body-sm" style={{ marginTop: '0.75rem' }}>Your password has been updated. You can now sign in.</p>

@@ -6,6 +6,7 @@ import com.wealthwise.model.SchemeMaster;
 import com.wealthwise.repository.InvestmentLotRepository;
 import com.wealthwise.repository.NavDailyRepository;
 import com.wealthwise.repository.SchemeMasterRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -57,6 +58,7 @@ public class HoldingsService {
         List<InvestmentLot> lots
     ) {}
 
+    @Cacheable(value = "holdings", key = "#userId")
     public List<Holding> getHoldings(UUID userId) {
         long startMs = System.currentTimeMillis();
         log.info("[Holdings] ▶ Fetching active lots for user={}", userId);

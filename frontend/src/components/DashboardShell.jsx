@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Sun, Moon, Bell, ChevronDown } from 'lucide-react';
 import { useAuth } from '../lib/auth';
 import { useTheme } from '../lib/theme';
 
@@ -111,8 +112,8 @@ export function DashboardShell({ children }) {
                 onMouseEnter={e => { e.currentTarget.style.background = theme === 'dark' ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = theme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'; }}
               >
-                <span style={{ display: 'block', transition: 'transform 0.35s ease', transform: theme === 'light' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                  {theme === 'dark' ? '☀️' : '🌙'}
+                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.35s ease', transform: theme === 'light' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                  {theme === 'dark' ? <Sun size={15} strokeWidth={2} /> : <Moon size={15} strokeWidth={2} />}
                 </span>
               </button>
 
@@ -122,8 +123,8 @@ export function DashboardShell({ children }) {
                 height: '2.25rem', width: '2.25rem', borderRadius: '10px',
                 background: theme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
                 border: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.10)'}`,
-                textDecoration: 'none', fontSize: '1rem', color: theme === 'dark' ? '#fff' : '#0d1f14',
-              }}>🔔</Link>
+                textDecoration: 'none', color: theme === 'dark' ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.6)',
+              }}><Bell size={15} strokeWidth={2} /></Link>
 
               {/* Profile dropdown */}
               <div style={{ position: 'relative' }}>
@@ -141,7 +142,7 @@ export function DashboardShell({ children }) {
                     {(user?.fullName || user?.email || 'U')[0].toUpperCase()}
                   </span>
                   <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>{user?.fullName?.split(' ')[0] || 'Me'}</span>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--ww-text-muted)' }}>▾</span>
+                  <ChevronDown size={13} strokeWidth={2} style={{ color: 'var(--ww-text-muted)' }} />
                 </button>
 
                 {profileOpen && (

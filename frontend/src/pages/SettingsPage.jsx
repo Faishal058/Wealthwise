@@ -54,8 +54,8 @@ export default function SettingsPage() {
               {PREFS.map((p) => (
                 <label key={p.key} style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  borderRadius: '18px', border: `1px solid ${settings[p.key] ? 'rgba(180,255,69,0.18)' : 'var(--ww-border-subtle)'}`,
-                  background: settings[p.key] ? 'rgba(180,255,69,0.05)' : '#071510',
+                  borderRadius: '18px', border: `1px solid ${settings[p.key] ? 'rgba(52,211,153,0.16)' : 'var(--ww-border-subtle)'}`,
+                  background: settings[p.key] ? 'rgba(52,211,153,0.05)' : 'rgba(13,22,18,0.85)',
                   padding: '1rem 1.25rem', cursor: 'pointer', transition: 'all 0.18s',
                 }}>
                   <div>

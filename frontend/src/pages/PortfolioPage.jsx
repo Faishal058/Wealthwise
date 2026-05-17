@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { BarChart3, ListFilter, BrainCircuit, Wrench, RefreshCw, DollarSign, CreditCard, TrendingUp, TrendingDown, Zap, Calendar, Scale, Activity, CheckCircle2, AlertTriangle, XCircle, Target, Puzzle } from 'lucide-react';
 import { api } from '../lib/api';
 
 const T = {
@@ -225,10 +226,10 @@ export default function PortfolioPage() {
     }));
 
   const tabs = [
-    { id: 'overview',   label: '📊 Overview' },
-    { id: 'holdings',   label: '📋 Holdings' },
-    { id: 'analytics',  label: '🧠 Analytics' },
-    { id: 'tools',      label: '🛠 Tools' },
+    { id: 'overview',   label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><BarChart3 size={16} /> Overview</span> },
+    { id: 'holdings',   label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ListFilter size={16} /> Holdings</span> },
+    { id: 'analytics',  label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><BrainCircuit size={16} /> Analytics</span> },
+    { id: 'tools',      label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Wrench size={16} /> Tools</span> },
   ];
 
   /* ──────────────────────────────────────────────────────── */
@@ -247,7 +248,7 @@ export default function PortfolioPage() {
             background: 'rgba(163,230,53,0.1)', border: '1px solid rgba(163,230,53,0.25)',
             borderRadius: '999px', padding: '0.45rem 1rem',
             color: '#a3e635', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer',
-          }}>↻ Refresh</button>
+          }}><RefreshCw size={14} /> Refresh</button>
         </div>
       </div>
 
@@ -262,11 +263,11 @@ export default function PortfolioPage() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
           {[
-            { label: 'Portfolio Value', icon: '💰', value: fmt(animCurrent), sub: fmtPct(gainPct), subColor: gainPct >= 0 ? T.positive : T.negative, accent: true },
-            { label: 'Total Invested',  icon: '💳', value: fmt(animInvested), sub: `${fundCount} fund${fundCount !== 1 ? 's' : ''}`, subColor: T.textGhost },
-            { label: 'Total Gain/Loss', icon: gain >= 0 ? '📈' : '📉', value: fmt(Math.abs(animGain)), sub: gain >= 0 ? 'Unrealized profit' : 'Unrealized loss', subColor: gain >= 0 ? T.positive : T.negative, valueColor: gain >= 0 ? T.positive : T.negative },
-            { label: 'XIRR',           icon: '⚡', value: xirr != null ? fmtNum(xirr) + '%' : '—', sub: 'Extended IRR', subColor: xirr != null && xirr >= 12 ? T.positive : T.orange, valueColor: xirr != null && xirr >= 0 ? T.positive : T.negative },
-            { label: 'CAGR',           icon: '📆', value: cagr != null ? fmtNum(cagr) + '%' : '—', sub: `${fmtNum(years, 1)} yr avg`, subColor: T.textGhost, valueColor: cagr != null && cagr >= 0 ? T.positive : T.negative },
+            { label: 'Portfolio Value', icon: <DollarSign size={20} color="var(--ww-accent)" />, value: fmt(animCurrent), sub: fmtPct(gainPct), subColor: gainPct >= 0 ? T.positive : T.negative, accent: true },
+            { label: 'Total Invested',  icon: <CreditCard size={20} color="var(--ww-text-muted)" />, value: fmt(animInvested), sub: `${fundCount} fund${fundCount !== 1 ? 's' : ''}`, subColor: T.textGhost },
+            { label: 'Total Gain/Loss', icon: gain >= 0 ? <TrendingUp size={20} color={T.positive} /> : <TrendingDown size={20} color={T.negative} />, value: fmt(Math.abs(animGain)), sub: gain >= 0 ? 'Unrealized profit' : 'Unrealized loss', subColor: gain >= 0 ? T.positive : T.negative, valueColor: gain >= 0 ? T.positive : T.negative },
+            { label: 'XIRR',           icon: <Zap size={20} color={xirr != null && xirr >= 12 ? T.positive : T.orange} />, value: xirr != null ? fmtNum(xirr) + '%' : '—', sub: 'Extended IRR', subColor: xirr != null && xirr >= 12 ? T.positive : T.orange, valueColor: xirr != null && xirr >= 0 ? T.positive : T.negative },
+            { label: 'CAGR',           icon: <Calendar size={20} color="var(--ww-text-muted)" />, value: cagr != null ? fmtNum(cagr) + '%' : '—', sub: `${fmtNum(years, 1)} yr avg`, subColor: T.textGhost, valueColor: cagr != null && cagr >= 0 ? T.positive : T.negative },
           ].map(({ label, icon, value, sub, subColor, valueColor, accent }) => (
             <div key={label} className="ww-card" style={{
               padding: '1.1rem 1.25rem',
@@ -274,7 +275,7 @@ export default function PortfolioPage() {
               border: accent ? `1px solid var(--ww-border-accent)` : `1px solid var(--ww-border)`,
               borderRadius: '16px', position: 'relative', overflow: 'hidden',
             }}>
-              <div style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>{icon}</div>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.25rem' }}>{icon}</div>
               <p style={{ fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', color: T.textGhost, marginBottom: '0.3rem' }}>{label}</p>
               <p style={{ fontSize: '1.35rem', fontWeight: 800, color: valueColor || T.textPrimary, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '0.25rem' }}>{value}</p>
               <p style={{ fontSize: '0.72rem', fontWeight: 600, color: subColor }}>{sub}</p>
@@ -316,9 +317,9 @@ export default function PortfolioPage() {
                   background: gain >= 0 ? 'rgba(163,230,53,0.12)' : 'rgba(248,113,113,0.12)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   border: `2px solid ${gain >= 0 ? 'rgba(163,230,53,0.4)' : 'rgba(248,113,113,0.4)'}`,
-                  fontSize: '1.75rem',
+                  color: gain >= 0 ? '#a3e635' : '#f87171',
                 }}>
-                  {gain >= 0 ? '📈' : '📉'}
+                  {gain >= 0 ? <TrendingUp size={36} /> : <TrendingDown size={36} />}
                 </div>
                 <div>
                   <p style={{ fontSize: '2rem', fontWeight: 900, color: gain >= 0 ? '#a3e635' : '#f87171', letterSpacing: '-0.03em', lineHeight: 1 }}>
@@ -397,8 +398,8 @@ export default function PortfolioPage() {
                 </div>
                 <span style={{ fontSize: '1.1rem', fontWeight: 900, color: divColor, minWidth: '42px', textAlign: 'right' }}>{divScore}/10</span>
               </div>
-              <p style={{ fontSize: '0.72rem', color: T.textGhost, marginBottom: '1.25rem' }}>
-                {divScore >= 7 ? '✅ Well diversified' : divScore >= 4 ? '⚠️ Moderately diversified' : '❌ Under-diversified'}
+              <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: T.textGhost, marginBottom: '1.25rem' }}>
+                {divScore >= 7 ? <><CheckCircle2 size={16} color="#a3e635" /> Well diversified</> : divScore >= 4 ? <><AlertTriangle size={16} color="#fbbf24" /> Moderately diversified</> : <><XCircle size={16} color="#f87171" /> Under-diversified</>}
               </p>
 
               {/* Diversification breakdown */}
@@ -414,7 +415,7 @@ export default function PortfolioPage() {
                     <p style={{ fontSize: '0.6rem', color: T.textGhost }}>{note}</p>
                   </div>
                   <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.18rem 0.55rem', borderRadius: '999px', background: ok ? 'rgba(163,230,53,0.1)' : 'rgba(251,191,36,0.1)', color: ok ? T.positive : T.orange }}>
-                    {ok ? '✓ ' : '⚠ '}{v}
+                    {v}
                   </span>
                 </div>
               ))}
@@ -551,15 +552,15 @@ export default function PortfolioPage() {
               {/* 6 metric cards in 2-3 col grid */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1rem' }}>
                 {[
-                  { label: 'Sharpe Ratio',    val: fmtNum(riskProfile.sharpeRatio),           icon: '⚖️',  color: riskProfile.sharpeRatio > 1 ? '#a3e635' : riskProfile.sharpeRatio > 0.5 ? '#fbbf24' : '#f87171', hint: '> 1 = excellent risk-adjusted return' },
-                  { label: 'Volatility',      val: fmtNum(riskProfile.volatility) + '%',       icon: '〰️', color: '#38bdf8', hint: 'Annualised portfolio standard deviation' },
-                  { label: 'Max Drawdown',    val: '-' + fmtNum(riskProfile.maxDrawdown) + '%', icon: '📉', color: '#f87171', hint: 'Estimated worst peak-to-trough decline' },
-                  { label: 'Annual Return',   val: fmtNum(riskProfile.annualReturn) + '%',      icon: '📈', color: riskProfile.annualReturn > 12 ? '#a3e635' : '#fbbf24', hint: 'Estimated annualised return' },
-                  { label: 'Diversification', val: riskProfile.diversificationScore + '/10',    icon: '🧩', color: riskProfile.diversificationScore >= 7 ? '#a3e635' : riskProfile.diversificationScore >= 4 ? '#fbbf24' : '#f87171', hint: 'Spread across funds, AMCs, categories' },
-                  { label: 'Risk Appetite',   val: riskProfile.derivedRiskAppetite,             icon: '🎯', color: riskProfile.derivedRiskAppetite === 'AGGRESSIVE' ? '#f87171' : riskProfile.derivedRiskAppetite === 'CONSERVATIVE' ? '#22d3ee' : '#fbbf24', hint: 'Derived from your asset allocation mix' },
+                  { label: 'Sharpe Ratio',    val: fmtNum(riskProfile.sharpeRatio),           icon: <Scale size={24} color={riskProfile.sharpeRatio > 1 ? '#a3e635' : '#fbbf24'} />,  color: riskProfile.sharpeRatio > 1 ? '#a3e635' : riskProfile.sharpeRatio > 0.5 ? '#fbbf24' : '#f87171', hint: '> 1 = excellent risk-adjusted return' },
+                  { label: 'Volatility',      val: fmtNum(riskProfile.volatility) + '%',       icon: <Activity size={24} color="#38bdf8" />, color: '#38bdf8', hint: 'Annualised portfolio standard deviation' },
+                  { label: 'Max Drawdown',    val: '-' + fmtNum(riskProfile.maxDrawdown) + '%', icon: <TrendingDown size={24} color="#f87171" />, color: '#f87171', hint: 'Estimated worst peak-to-trough decline' },
+                  { label: 'Annual Return',   val: fmtNum(riskProfile.annualReturn) + '%',      icon: <TrendingUp size={24} color="#a3e635" />, color: riskProfile.annualReturn > 12 ? '#a3e635' : '#fbbf24', hint: 'Estimated annualised return' },
+                  { label: 'Diversification', val: riskProfile.diversificationScore + '/10',    icon: <Puzzle size={24} color={riskProfile.diversificationScore >= 7 ? '#a3e635' : '#fbbf24'} />, color: riskProfile.diversificationScore >= 7 ? '#a3e635' : riskProfile.diversificationScore >= 4 ? '#fbbf24' : '#f87171', hint: 'Spread across funds, AMCs, categories' },
+                  { label: 'Risk Appetite',   val: riskProfile.derivedRiskAppetite,             icon: <Target size={24} color="#a78bfa" />, color: riskProfile.derivedRiskAppetite === 'AGGRESSIVE' ? '#f87171' : riskProfile.derivedRiskAppetite === 'CONSERVATIVE' ? '#22d3ee' : '#fbbf24', hint: 'Derived from your asset allocation mix' },
                 ].map(m => (
                   <div key={m.label} className="ww-card" style={{ padding: '1.5rem' }} title={m.hint}>
-                    <p style={{ fontSize: '1.5rem', marginBottom: '0.6rem' }}>{m.icon}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.6rem' }}>{m.icon}</div>
                     <p style={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '0.4rem', fontWeight: 700 }}>{m.label}</p>
                     <p style={{ fontSize: '1.65rem', fontWeight: 900, color: m.color, letterSpacing: '-0.02em', marginBottom: '0.35rem' }}>{m.val}</p>
                     <p style={{ fontSize: '0.63rem', color: 'rgba(255,255,255,0.28)', lineHeight: 1.5 }}>{m.hint}</p>

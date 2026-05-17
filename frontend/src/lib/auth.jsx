@@ -1,6 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8081';
+const API_HOST = (() => {
+  try {
+    return new URL(API).host;
+  } catch {
+    return 'the backend';
+  }
+})();
 
 const AuthContext = createContext(null);
 
@@ -45,7 +52,7 @@ export function AuthProvider({ children }) {
       persist(data.user, data.token);
       return { error: null };
     } catch (err) {
-      return { error: { message: 'Cannot connect to server. Make sure the backend is running on port 8080.' } };
+      return { error: { message: `Cannot connect to server. Make sure the backend is running at ${API_HOST}.` } };
     }
   }
 
@@ -61,7 +68,7 @@ export function AuthProvider({ children }) {
       persist(data.user, data.token);
       return { error: null };
     } catch (err) {
-      return { error: { message: 'Cannot connect to server. Make sure the backend is running on port 8080.' } };
+      return { error: { message: `Cannot connect to server. Make sure the backend is running at ${API_HOST}.` } };
     }
   }
 

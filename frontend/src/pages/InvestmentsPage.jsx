@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus, Trash2, AlertTriangle, Inbox, XCircle } from 'lucide-react';
 import { api } from '../lib/api';
 
 const T = {
@@ -114,7 +115,7 @@ export default function InvestmentsPage() {
         <div className="ww-card" style={{ padding: '3rem', textAlign: 'center', color: 'rgba(255,255,255,0.4)' }}>Loading holdings...</div>
       ) : filtered.length === 0 ? (
         <div className="ww-card" style={{ padding: '3.5rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ fontSize: '3rem', lineHeight: 1 }}>📭</div>
+          <div style={{ color: 'var(--ww-text-ghost)' }}><Inbox size={48} /></div>
           <p style={{ color: T.textPrimary, fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>No investments yet</p>
           <p style={{ color: T.textMuted, fontSize: '0.875rem', margin: 0 }}>
             Start by logging your first transaction to track your portfolio.
@@ -133,7 +134,7 @@ export default function InvestmentsPage() {
             onMouseEnter={e => e.currentTarget.style.background = 'rgba(163,230,53,0.25)'}
             onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(135deg, rgba(163,230,53,0.18), rgba(163,230,53,0.06))'}
           >
-            ➕ Add Investments <span style={{ fontSize: '1rem' }}>→</span>
+            <Plus size={16} /> Add Investments <span style={{ fontSize: '1rem' }}>→</span>
           </button>
         </div>
       ) : (
@@ -166,7 +167,7 @@ export default function InvestmentsPage() {
                   ))}
                 </div>
 
-                {/* 🗑 Bin icon */}
+                {/* Bin icon */}
                 <button
                   onClick={() => setDeleteTarget(h)}
                   title="Remove this holding"
@@ -176,14 +177,14 @@ export default function InvestmentsPage() {
                     border: '1px solid rgba(248,113,113,0.25)',
                     background: 'rgba(248,113,113,0.07)',
                     color: '#f87171',
-                    cursor: 'pointer', fontSize: '1rem',
+                    cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     transition: 'all 0.15s', alignSelf: 'center',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.background = 'rgba(248,113,113,0.22)'; e.currentTarget.style.borderColor = 'rgba(248,113,113,0.6)'; e.currentTarget.style.transform = 'scale(1.1)'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'rgba(248,113,113,0.07)'; e.currentTarget.style.borderColor = 'rgba(248,113,113,0.25)'; e.currentTarget.style.transform = 'scale(1)'; }}
                 >
-                  🗑
+                  <Trash2 size={16} />
                 </button>
               </div>
 
@@ -210,8 +211,8 @@ export default function InvestmentsPage() {
             style={{ background: '#061a10', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '22px', padding: '2.25rem', maxWidth: '440px', width: '100%', boxShadow: '0 40px 80px rgba(0,0,0,0.6)' }}
           >
             <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-              <div style={{ width: '64px', height: '64px', borderRadius: '50%', margin: '0 auto 1rem', background: 'rgba(248,113,113,0.12)', border: '2px solid rgba(248,113,113,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem' }}>
-                🗑️
+              <div style={{ width: '64px', height: '64px', borderRadius: '50%', margin: '0 auto 1rem', background: 'rgba(248,113,113,0.12)', border: '2px solid rgba(248,113,113,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f87171' }}>
+                <Trash2 size={28} />
               </div>
               <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff', marginBottom: '0.5rem' }}>Remove Holding?</h3>
               <div style={{ padding: '0.75rem 1rem', background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.18)', borderRadius: '10px', margin: '0.75rem 0' }}>
@@ -220,12 +221,12 @@ export default function InvestmentsPage() {
                   {deleteTarget.totalUnits?.toFixed(4)} units · {fmt(deleteTarget.currentValue)}
                 </p>
               </div>
-              <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.65 }}>
-                ⚠️ This will permanently delete all transactions and lots for this fund. This cannot be undone.
+              <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center', fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.65 }}>
+                <AlertTriangle size={14} color="#fbbf24" /> This will permanently delete all transactions and lots for this fund.
               </p>
               {deleteError && (
-                <div style={{ marginTop: '0.75rem', padding: '0.65rem 0.875rem', background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '8px', textAlign: 'left' }}>
-                  <p style={{ fontSize: '0.72rem', color: '#f87171', lineHeight: 1.5 }}>❌ {deleteError}</p>
+                <div style={{ marginTop: '0.75rem', padding: '0.65rem 0.875rem', background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem', textAlign: 'left' }}>
+                  <XCircle size={16} color="#f87171" /> <p style={{ fontSize: '0.72rem', color: '#f87171', lineHeight: 1.5, margin: 0 }}>{deleteError}</p>
                 </div>
               )}
             </div>
@@ -242,7 +243,7 @@ export default function InvestmentsPage() {
               >
                 {deleting
                   ? <><span style={{ width: '14px', height: '14px', border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid #fff', borderRadius: '50%', animation: 'spin 0.7s linear infinite', display: 'inline-block' }} /> Deleting…</>
-                  : '🗑 Yes, Remove'}
+                  : <><Trash2 size={16} /> Yes, Remove</>}
               </button>
             </div>
           </div>

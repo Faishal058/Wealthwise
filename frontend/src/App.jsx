@@ -27,7 +27,7 @@ function ProtectedRoute() {
   const { user, loading } = useAuth();
   if (loading) return (
     <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', background: 'var(--ww-bg)', color: '#fff', flexDirection: 'column', gap: '1rem' }}>
-      <div style={{ width: '2rem', height: '2rem', border: '3px solid rgba(180,255,69,0.2)', borderTop: '3px solid var(--ww-accent)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      <div style={{ width: '2rem', height: '2rem', border: '3px solid rgba(52,211,153,0.15)', borderTop: '3px solid var(--ww-accent)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
       <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>Loading...</p>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>

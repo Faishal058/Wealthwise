@@ -13,7 +13,7 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager mgr = new CaffeineCacheManager("marketOverview", "fundSearch", "navHistory");
+        CaffeineCacheManager mgr = new CaffeineCacheManager("marketOverview", "fundSearch", "navHistory", "holdings");
         mgr.setCaffeine(Caffeine.newBuilder()
                 .maximumSize(500)
                 .expireAfterWrite(10, TimeUnit.MINUTES));

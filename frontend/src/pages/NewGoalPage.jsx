@@ -71,7 +71,7 @@ export default function NewGoalPage() {
           <Field label="Inflation Rate (%)" type="number" value={form.inflationRate} onChange={(v) => update('inflationRate', v)} placeholder="6" />
           <Field label="Expected Return (%)" type="number" value={form.expectedReturn} onChange={(v) => update('expectedReturn', v)} placeholder="12" />
           {monthlyNeedPreview > 0 && (
-            <div style={{ padding: '1rem', borderRadius: '16px', background: 'rgba(180,255,69,0.08)', border: '1px solid rgba(180,255,69,0.15)' }}>
+            <div style={{ padding: '1rem', borderRadius: '16px', background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.14)' }}>
               <p style={{ fontSize: '0.75rem', color: 'var(--ww-accent-muted)', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Estimated monthly SIP needed</p>
               <p style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', marginTop: '0.25rem' }}>{formatCompactCurrency(monthlyNeedPreview)}</p>
             </div>

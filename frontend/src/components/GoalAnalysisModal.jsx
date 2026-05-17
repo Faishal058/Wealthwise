@@ -57,7 +57,7 @@ function ScenarioBars({ pessimistic, likely, optimistic, target }) {
   const scenarios = [
     { label: 'Bad Markets',          value: pessimistic, color: 'var(--ww-negative)',  bg: 'rgba(248,113,113,0.12)' },
     { label: 'Most Likely',          value: likely,      color: 'var(--ww-purple)',     bg: 'rgba(167,139,250,0.12)' },
-    { label: 'Good Markets',         value: optimistic,  color: 'var(--ww-accent)',     bg: 'rgba(180,255,69,0.08)' },
+    { label: 'Good Markets',         value: optimistic,  color: 'var(--ww-accent)',     bg: 'rgba(52,211,153,0.07)' },
   ];
 
   return (

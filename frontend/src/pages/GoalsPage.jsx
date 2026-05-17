@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Sparkles, Link } from 'lucide-react';
+import { Target, Sparkles, Link, AlertTriangle, Microscope, CheckCircle, Trophy, RotateCcw, Plus, Trash2, Wallet } from 'lucide-react';
 import { api } from '../lib/api';
 import { GOAL_TYPES, formatINR } from '../lib/goalHelpers';
 import GoalWizard from '../components/GoalWizard';
@@ -16,7 +16,7 @@ const priorityClass  = { High: 'high', Medium: 'medium', Low: 'low' };
 function goalIcon(g) {
   const gt = GOAL_TYPES.find((t) => t.type?.toLowerCase() === g.goalType?.toLowerCase()
     || t.label?.toLowerCase().includes(g.goalType?.toLowerCase()));
-  return gt?.icon ?? '💰';
+  return gt?.icon ?? <Wallet size={18} />;
 }
 
 export default function GoalsPage() {
@@ -77,11 +77,12 @@ export default function GoalsPage() {
         </div>
         <motion.button
           className="goals-new-btn"
+          style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
           onClick={() => setShowWizard(true)}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
         >
-          + New Goal
+          <Plus size={16} /> New Goal
         </motion.button>
       </div>
 
@@ -171,23 +172,23 @@ export default function GoalsPage() {
                 </div>
 
                 {/* On-track badge */}
-                <div className={`gw-info-banner ${onTrack ? 'success' : 'warn'}`} style={{ padding: '8px 12px' }}>
+                <div className={`gw-info-banner ${onTrack ? 'success' : 'warn'}`} style={{ padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   {onTrack
-                    ? <><Sparkles size={12} /> On track — surplus of {formatINR(Math.abs(gap || 0))}</>
-                    : <>⚠️ Shortfall of {formatINR(Math.abs(gap || 0))}</>}
+                    ? <><Sparkles size={14} /> On track — surplus of {formatINR(Math.abs(gap || 0))}</>
+                    : <><AlertTriangle size={14} color="var(--ww-yellow)" /> Shortfall of {formatINR(Math.abs(gap || 0))}</>}
                 </div>
 
                 {/* ── Actions: Active goal ── */}
                 {(g.status === 'Active' || !g.status) && (
                   <div className="goal-actions">
-                    <button className="goal-action-btn analyse" onClick={() => setAnalysisGoal(g)}>
-                      🔬 Deep Analyse
+                    <button className="goal-action-btn analyse" style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }} onClick={() => setAnalysisGoal(g)}>
+                      <Microscope size={14} /> Deep Analyse
                     </button>
-                    <button className="goal-action-btn achieve" onClick={() => markAchieved(g.id)}>
-                      ✓ Achieved
+                    <button className="goal-action-btn achieve" style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }} onClick={() => markAchieved(g.id)}>
+                      <CheckCircle size={14} /> Achieved
                     </button>
-                    <button className="goal-action-btn delete" onClick={() => deleteGoal(g.id)}>
-                      Delete
+                    <button className="goal-action-btn delete" style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }} onClick={() => deleteGoal(g.id)}>
+                      <Trash2 size={14} /> Delete
                     </button>
                   </div>
                 )}
@@ -195,19 +196,19 @@ export default function GoalsPage() {
                 {/* ── Actions: Achieved goal ── */}
                 {(g.status === 'Achieved' || g.status === 'Completed') && (
                   <div className="goal-achieved-banner">
-                    <span className="goal-achieved-label">🏆 Goal Achieved!</span>
+                    <span className="goal-achieved-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Trophy size={16} color="#fbbf24" /> Goal Achieved!</span>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <motion.button
                         className="goal-action-btn analyse"
-                        style={{ flex: 'none' }}
+                        style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
                         onClick={() => reactivateGoal(g.id)}
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                       >
-                        ↺ Reactivate
+                        <RotateCcw size={14} /> Reactivate
                       </motion.button>
-                      <button className="goal-action-btn delete" onClick={() => deleteGoal(g.id)}>
-                        Delete
+                      <button className="goal-action-btn delete" style={{ display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => deleteGoal(g.id)}>
+                        <Trash2 size={14} /> Delete
                       </button>
                     </div>
                   </div>

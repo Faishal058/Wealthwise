@@ -102,7 +102,7 @@
   transition: color 0.2s, background 0.2s;
 }
 .gw-pill.current {
-  background: rgba(180, 255, 69, 0.12);
+  background: rgba(52, 211, 153, 0.10);
   color: var(--ww-accent);
 }
 .gw-pill.done {
@@ -252,7 +252,7 @@
 }
 .gw-type-card.active {
   border-color: var(--ww-accent);
-  background: rgba(180, 255, 69, 0.08);
+  background: rgba(52, 211, 153, 0.07);
   color: var(--ww-text-primary);
 }
 .gw-type-icon { font-size: 1.6rem; }
@@ -278,7 +278,7 @@
 }
 .gw-toggle-btn.active {
   border-color: var(--ww-accent);
-  background: rgba(180, 255, 69, 0.1);
+  background: rgba(52, 211, 153, 0.08);
   color: var(--ww-accent);
 }
 
@@ -289,7 +289,7 @@
 .gw-alloc-banner {
   padding: 14px;
   border-radius: 14px;
-  background: rgba(180, 255, 69, 0.06);
+  background: rgba(52, 211, 153, 0.05);
   border: 1px solid var(--ww-border-accent);
   margin-top: 14px;
 }
@@ -335,7 +335,7 @@
   transition: border-color 0.2s, background 0.2s;
   margin-bottom: 8px;
 }
-.gw-priority-btn.active { border-color: var(--ww-border-accent); background: rgba(180, 255, 69, 0.06); }
+.gw-priority-btn.active { border-color: var(--ww-border-accent); background: rgba(52, 211, 153, 0.05); }
 .gw-pri-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
 .gw-pri-label { font-size: 0.83rem; font-weight: 700; margin-bottom: 2px; }
 .gw-pri-desc  { font-size: 0.72rem; color: var(--ww-text-muted); }
@@ -353,7 +353,7 @@
 .gw-info-banner.warn    { background: rgba(251,191,36,.1);  color: var(--ww-yellow);   border: 1px solid rgba(251,191,36,.2); }
 .gw-info-banner.success { background: rgba(74,222,128,.08); color: var(--ww-positive); border: 1px solid rgba(74,222,128,.2); }
 .gw-info-banner.danger  { background: rgba(248,113,113,.08);color: var(--ww-negative); border: 1px solid rgba(248,113,113,.2); }
-.gw-info-banner.accent  { background: rgba(180,255,69,.07); color: var(--ww-accent);   border: 1px solid var(--ww-border-accent); }
+.gw-info-banner.accent  { background: rgba(52,211,153,.06); color: var(--ww-accent);   border: 1px solid var(--ww-border-accent); }
 
 /* ── Loading spinner ──────────────────────────────────────── */
 .gw-loading {
@@ -366,7 +366,7 @@
 .gw-spinner {
   width: 30px;
   height: 30px;
-  border: 3px solid rgba(180, 255, 69, 0.2);
+  border: 3px solid rgba(52, 211, 153, 0.15);
   border-top-color: var(--ww-accent);
   border-radius: 50%;
   animation: gwSpin 0.8s linear infinite;
@@ -432,7 +432,7 @@
   letter-spacing: 0.06em;
 }
 .gam-row-total {
-  background: rgba(180, 255, 69, 0.04);
+  background: rgba(52, 211, 153, 0.04);
   font-weight: 700;
   color: var(--ww-text-primary);
 }
@@ -513,7 +513,7 @@
   padding: 3px 8px;
   border-radius: 6px;
 }
-.goal-badge.active   { background: rgba(180,255,69,.12);  color: var(--ww-accent); }
+.goal-badge.active   { background: rgba(52,211,153,.10);  color: var(--ww-accent); }
 .goal-badge.achieved { background: rgba(74,222,128,.12);  color: var(--ww-positive); }
 .goal-badge.high     { background: rgba(248,113,113,.1);  color: var(--ww-negative); }
 .goal-badge.medium   { background: rgba(251,191,36,.1);   color: var(--ww-yellow); }
@@ -591,8 +591,8 @@
 }
 .goal-action-btn.analyse  { border-color: rgba(167,139,250,.4); color: var(--ww-purple); }
 .goal-action-btn.analyse:hover { background: rgba(167,139,250,.1); }
-.goal-action-btn.achieve  { border-color: rgba(180,255,69,.3); color: var(--ww-accent); }
-.goal-action-btn.achieve:hover { background: rgba(180,255,69,.08); }
+.goal-action-btn.achieve  { border-color: rgba(52,211,153,.25); color: var(--ww-accent); }
+.goal-action-btn.achieve:hover { background: rgba(52,211,153,.07); }
 .goal-action-btn.delete   { border-color: rgba(248,113,113,.3); color: var(--ww-negative); }
 .goal-action-btn.delete:hover { background: rgba(248,113,113,.08); }
 
@@ -845,8 +845,8 @@
   border-color: var(--ww-accent);
 }
 .glm-link-btn.linked {
-  background: rgba(180,255,69,.1);
-  border-color: rgba(180,255,69,.3);
+  background: rgba(52,211,153,.08);
+  border-color: rgba(52,211,153,.25);
   color: var(--ww-accent);
 }
 .glm-link-btn.linked:hover {

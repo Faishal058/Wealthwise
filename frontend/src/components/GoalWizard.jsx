@@ -381,7 +381,7 @@ export default function GoalWizard({ onClose, onCreated }) {
               </motion.button>
             ) : (
               <motion.button className="gw-btn-create" onClick={handleCreate} disabled={loading}
-                whileHover={{ scale: 1.03, boxShadow: '0 0 20px rgba(180,255,69,.4)' }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}>
                 {loading ? 'Creating…' : 'Create Goal'}
               </motion.button>

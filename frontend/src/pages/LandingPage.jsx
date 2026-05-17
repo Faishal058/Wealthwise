@@ -22,8 +22,8 @@ const platformFeatures = [
         <path d="M14 17.5h7M17.5 14v7" />
       </svg>
     ),
-    accent: 'rgba(180,255,69,0.18)',
-    color: '#b4ff45',
+    accent: 'rgba(52,211,153,0.14)',
+    color: '#34d399',
   },
   {
     title: 'Move from guesswork to planning',
@@ -131,7 +131,7 @@ export default function LandingPage() {
                         <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.32em', color: 'var(--ww-text-faint)' }}>SIP velocity</p>
                         <h2 style={{ marginTop: '0.75rem', fontSize: '1.5rem', fontWeight: 600 }}>Rs 23,500 / month</h2>
                       </div>
-                      <div style={{ borderRadius: '9999px', background: 'rgba(180,255,69,0.18)', padding: '0.25rem 0.75rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ww-accent-muted)' }}>+12.6%</div>
+                      <div style={{ borderRadius: '9999px', background: 'rgba(52,211,153,0.14)', padding: '0.25rem 0.75rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ww-accent-muted)' }}>+12.6%</div>
                     </div>
                     <AnimatedBars />
                   </div>
@@ -238,7 +238,7 @@ export default function LandingPage() {
                     <p style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.32em', color: 'var(--ww-accent-soft)' }}>{panel.eyebrow}</p>
                     <h3 style={{ marginTop: '1rem', fontSize: '1.875rem', fontWeight: 600, color: '#fff' }}>{panel.title}</h3>
                     <p className="ww-body-sm" style={{ marginTop: '1rem', maxWidth: '40rem' }}>{panel.body}</p>
-                    <div style={{ marginTop: '1.5rem', display: 'inline-flex', borderRadius: '9999px', border: '1px solid rgba(180,255,69,0.20)', background: 'rgba(180,255,69,0.10)', padding: '0.5rem 1rem', fontSize: '0.875rem', fontWeight: 600, color: 'var(--ww-accent-muted)' }}>{panel.metric}</div>
+                    <div style={{ marginTop: '1.5rem', display: 'inline-flex', borderRadius: '9999px', border: '1px solid rgba(52,211,153,0.18)', background: 'rgba(52,211,153,0.08)', padding: '0.5rem 1rem', fontSize: '0.875rem', fontWeight: 600, color: 'var(--ww-accent-muted)' }}>{panel.metric}</div>
                   </motion.article>
                 ))}
               </div>
@@ -292,7 +292,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section style={{ borderTop: '1px solid var(--ww-border)', borderBottom: '1px solid var(--ww-border)', background: 'radial-gradient(circle at top, rgba(180,255,69,0.10), transparent 38%), #081711' }}>
+      <section style={{ borderTop: '1px solid var(--ww-border)', borderBottom: '1px solid var(--ww-border)', background: 'radial-gradient(circle at top, rgba(52,211,153,0.06), transparent 45%), #081711' }}>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={reveal} style={{ maxWidth: '52rem', margin: '0 auto', padding: '6rem 1.25rem', textAlign: 'center' }}>
           <p className="ww-eyebrow">Ready to begin</p>
           <h2 className="ww-heading-lg" style={{ marginTop: '1.25rem' }}>Build your WealthWise workspace and make your next move with context.</h2>
@@ -341,8 +341,8 @@ function AnimatedLineChart() {
     <div className="ww-hero-chart" style={{ marginTop: '2rem' }}>
       <svg viewBox="0 0 420 170" style={{ height: '100%', width: '100%' }} fill="none" aria-hidden="true">
         <defs>
-          <linearGradient id="heroLine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(180,255,69,0.95)" /><stop offset="100%" stopColor="rgba(180,255,69,0.1)" /></linearGradient>
-          <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(180,255,69,0.28)" /><stop offset="100%" stopColor="rgba(180,255,69,0)" /></linearGradient>
+          <linearGradient id="heroLine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(52,211,153,0.95)" /><stop offset="100%" stopColor="rgba(52,211,153,0.15)" /></linearGradient>
+          <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(52,211,153,0.22)" /><stop offset="100%" stopColor="rgba(52,211,153,0)" /></linearGradient>
         </defs>
         <path d="M10 150 C55 142 72 138 105 110 C132 88 160 94 190 76 C218 58 252 24 284 40 C314 56 336 28 410 14" stroke="url(#heroLine)" strokeWidth="5" strokeLinecap="round" className="ww-svg-path" />
         <path d="M10 150 C55 142 72 138 105 110 C132 88 160 94 190 76 C218 58 252 24 284 40 C314 56 336 28 410 14 L410 170 L10 170 Z" fill="url(#heroArea)" className="ww-svg-area" />
@@ -355,7 +355,7 @@ function AnimatedLineChart() {
 
 function AnimatedBars() {
   return (
-    <div style={{ marginTop: '1.5rem', borderRadius: '28px', background: 'linear-gradient(180deg, rgba(180,255,69,0.16), rgba(180,255,69,0.02))', padding: '0.75rem' }}>
+    <div style={{ marginTop: '1.5rem', borderRadius: '28px', background: 'linear-gradient(180deg, rgba(52,211,153,0.10), rgba(52,211,153,0.01))', padding: '0.75rem' }}>
       <svg viewBox="0 0 300 96" style={{ height: '6rem', width: '100%' }} fill="none" aria-hidden="true">
         <defs><linearGradient id="barGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#d7ff96" /><stop offset="100%" stopColor="#54d8a1" /></linearGradient></defs>
         {[36, 58, 48, 74, 64, 88].map((height, index) => { const x = 14 + index * 46; const y = 94 - height; return <rect key={x} x={x} y={y} width="28" height={height} rx="14" className="ww-svg-bar" style={{ animationDelay: `${index * 0.14}s` }} />; })}
@@ -366,10 +366,10 @@ function AnimatedBars() {
 
 function AnimatedAreaChart() {
   return (
-    <div style={{ marginTop: '1.5rem', overflow: 'hidden', borderRadius: '26px', border: '1px solid rgba(255,255,255,0.06)', background: 'radial-gradient(circle at top, rgba(180,255,69,0.10), transparent 38%), #091712', padding: '1rem' }}>
+    <div style={{ marginTop: '1.5rem', overflow: 'hidden', borderRadius: '26px', border: '1px solid rgba(255,255,255,0.06)', background: 'radial-gradient(circle at top, rgba(52,211,153,0.06), transparent 45%), #091712', padding: '1rem' }}>
       <svg viewBox="0 0 520 240" style={{ height: 220, width: '100%' }} fill="none" aria-hidden="true">
         <defs>
-          <linearGradient id="analyticsArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(180,255,69,0.26)" /><stop offset="100%" stopColor="rgba(180,255,69,0)" /></linearGradient>
+          <linearGradient id="analyticsArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(52,211,153,0.20)" /><stop offset="100%" stopColor="rgba(52,211,153,0)" /></linearGradient>
           <linearGradient id="analyticsLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#7dfab4" /><stop offset="100%" stopColor="#d7ff96" /></linearGradient>
         </defs>
         <g className="ww-svg-grid">{[30,78,126,174,222].map(y => <line key={y} x1="0" y1={y} x2="520" y2={y} />)}{[40,120,200,280,360,440].map(x => <line key={x} x1={x} y1="0" x2={x} y2="240" />)}</g>

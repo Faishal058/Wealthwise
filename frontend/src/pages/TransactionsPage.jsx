@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { FileSpreadsheet, PlusCircle, FileText, UploadCloud, CheckCircle2, XCircle, AlertCircle, Download, FilePlus } from 'lucide-react';
 import { api } from '../lib/api';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081';
 
 // ── Portal dropdown — escapes backdrop-filter stacking context ──────────────
 function FundDropdown({ results, anchorRef, onPick, textGhost, textPrimary }) {
@@ -144,7 +147,10 @@ function TabBar({ tab, setTab }) {
       background: T.surface, borderRadius: '12px',
       padding: '4px', border: `1px solid var(--ww-border)`, width: 'fit-content',
     }}>
-      {[{ id: 'manual', label: '✏️ Manual Entry' }, { id: 'csv', label: '📁 Import CSV' }].map(t => (
+      {[
+        { id: 'manual', label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><PlusCircle size={16} /> Manual Entry</span> },
+        { id: 'csv', label: <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FileSpreadsheet size={16} /> Import CSV</span> }
+      ].map(t => (
         <button key={t.id} onClick={() => setTab(t.id)} style={{
           padding: '0.45rem 1.25rem', borderRadius: '9px', border: 'none', cursor: 'pointer',
           fontWeight: 700, fontSize: '0.825rem',
@@ -193,7 +199,7 @@ function CsvImportPanel({ onImported }) {
       const form = new FormData();
       form.append('file', file);
       const token = localStorage.getItem('ww_token');
-      const res = await fetch('http://localhost:8080/api/transactions/import-csv', {
+      const res = await fetch(`${API_URL}/api/transactions/import-csv`, {
         method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: form,
       });
       const data = await res.json();
@@ -212,14 +218,14 @@ function CsvImportPanel({ onImported }) {
       <div style={{ padding: '1rem 1.25rem', borderRadius: '14px', background: 'rgba(56,189,248,0.06)', border: '1px solid rgba(56,189,248,0.15)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div>
-            <p style={{ fontWeight: 700, fontSize: '0.875rem', color: '#38bdf8', marginBottom: '0.25rem' }}>📋 CSV Format Guide</p>
+            <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, fontSize: '0.875rem', color: '#38bdf8', marginBottom: '0.25rem' }}><FileText size={16} /> CSV Format Guide</p>
             <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6 }}>
               Required: <b style={{ color: '#fff' }}>date</b>, <b style={{ color: '#fff' }}>scheme_code</b>, <b style={{ color: '#fff' }}>transaction_type</b>, <b style={{ color: '#fff' }}>amount</b><br/>
               Optional: fund_name, nav, units, folio_number, note
             </p>
           </div>
-          <button onClick={downloadTemplate} style={{ padding: '0.5rem 1rem', borderRadius: '10px', background: 'rgba(56,189,248,0.15)', border: '1px solid rgba(56,189,248,0.3)', color: '#38bdf8', fontWeight: 700, fontSize: '0.78rem', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            ⬇ Download Template
+          <button onClick={downloadTemplate} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.5rem 1rem', borderRadius: '10px', background: 'rgba(56,189,248,0.15)', border: '1px solid rgba(56,189,248,0.3)', color: '#38bdf8', fontWeight: 700, fontSize: '0.78rem', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            <Download size={14} /> Download Template
           </button>
         </div>
       </div>
@@ -237,20 +243,20 @@ function CsvImportPanel({ onImported }) {
             background: dragging ? 'rgba(163,230,53,0.05)' : 'rgba(255,255,255,0.02)', transition: 'all 0.18s',
           }}
         >
-          <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>📂</div>
-        <p style={{ fontWeight: 700, color: T.textPrimary, marginBottom: '0.35rem' }}>{dragging ? 'Drop it!' : 'Drag & drop your CSV here'}</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem', color: 'var(--ww-accent)' }}><UploadCloud size={40} /></div>
+          <p style={{ fontWeight: 700, color: T.textPrimary, marginBottom: '0.35rem' }}>{dragging ? 'Drop it!' : 'Drag & drop your CSV here'}</p>
           <p style={{ fontSize: '0.8rem', color: T.textGhost }}>or click to browse — .csv files only</p>
           <input ref={inputRef} type="file" accept=".csv" style={{ display: 'none' }} onChange={e => handleFile(e.target.files[0])} />
         </div>
       )}
 
-      {err && <div style={{ padding: '0.75rem 1rem', borderRadius: '10px', background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)', color: '#f87171', fontSize: '0.85rem' }}>{err}</div>}
+      {err && <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1rem', borderRadius: '10px', background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)', color: '#f87171', fontSize: '0.85rem' }}><AlertCircle size={16} /> {err}</div>}
 
       {file && !result && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.875rem 1.125rem', borderRadius: '14px', background: 'rgba(163,230,53,0.06)', border: '1px solid rgba(163,230,53,0.18)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span style={{ fontSize: '1.5rem' }}>📄</span>
+              <div style={{ color: 'var(--ww-accent)' }}><FileSpreadsheet size={24} /></div>
               <div>
                 <p style={{ fontWeight: 700, color: T.textPrimary, fontSize: '0.875rem' }}>{file.name}</p>
                 <p style={{ fontSize: '0.72rem', color: T.textGhost }}>
@@ -271,7 +277,7 @@ function CsvImportPanel({ onImported }) {
                   <thead>
                     <tr style={{ background: 'rgba(255,255,255,0.04)' }}>
                       {preview.headers.map((h, i) => (
-                <th key={i} style={{ padding: '0.6rem 0.875rem', textAlign: 'left', whiteSpace: 'nowrap', color: T.textMuted, fontWeight: 700, textTransform: 'uppercase', fontSize: '0.65rem', letterSpacing: '0.1em', borderBottom: `1px solid var(--ww-border)` }}>{h}</th>
+                        <th key={i} style={{ padding: '0.6rem 0.875rem', textAlign: 'left', whiteSpace: 'nowrap', color: T.textMuted, fontWeight: 700, textTransform: 'uppercase', fontSize: '0.65rem', letterSpacing: '0.1em', borderBottom: `1px solid var(--ww-border)` }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -279,7 +285,7 @@ function CsvImportPanel({ onImported }) {
                     {preview.rows.map((row, ri) => (
                       <tr key={ri} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                         {row.map((cell, ci) => (
-                        <td key={ci} style={{ padding: '0.55rem 0.875rem', color: T.textSec, whiteSpace: 'nowrap', maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cell || '—'}</td>
+                          <td key={ci} style={{ padding: '0.55rem 0.875rem', color: T.textSec, whiteSpace: 'nowrap', maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cell || '—'}</td>
                         ))}
                       </tr>
                     ))}
@@ -290,7 +296,7 @@ function CsvImportPanel({ onImported }) {
           )}
 
           <button onClick={handleUpload} disabled={uploading} style={{ padding: '0.875rem', borderRadius: '12px', background: uploading ? 'rgba(163,230,53,0.4)' : '#a3e635', color: '#062415', border: 'none', fontWeight: 800, fontSize: '0.9375rem', cursor: uploading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', transition: 'all 0.18s' }}>
-            {uploading ? (<><span style={{ width: '16px', height: '16px', border: '2px solid rgba(6,36,21,0.3)', borderTop: '2px solid #062415', borderRadius: '50%', animation: 'spin 0.7s linear infinite', display: 'inline-block' }}/> Importing…</>) : `🚀 Import ${preview?.total ?? ''} Transactions`}
+            {uploading ? (<><span style={{ width: '16px', height: '16px', border: '2px solid rgba(6,36,21,0.3)', borderTop: '2px solid #062415', borderRadius: '50%', animation: 'spin 0.7s linear infinite', display: 'inline-block' }}/> Importing…</>) : <><FilePlus size={18} /> Import {preview?.total ?? ''} Transactions</>}
           </button>
           <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
         </div>
@@ -300,15 +306,14 @@ function CsvImportPanel({ onImported }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '0.75rem' }}>
             {[
-              { label: 'Imported', value: result.imported, color: '#a3e635', icon: '✅' },
-              { label: 'Failed',   value: result.failed,   color: '#f87171', icon: '❌' },
-              { label: 'Skipped',  value: result.skipped,  color: '#fbbf24', icon: '⏭️' },
+              { label: 'Imported', value: result.imported, color: '#a3e635', icon: <CheckCircle2 size={24} color="#a3e635" /> },
+              { label: 'Failed',   value: result.failed,   color: '#f87171', icon: <XCircle size={24} color="#f87171" /> },
+              { label: 'Skipped',  value: result.skipped,  color: '#fbbf24', icon: <AlertCircle size={24} color="#fbbf24" /> },
             ].map(s => (
               <div key={s.label} style={{ padding: '1rem', borderRadius: '14px', background: `${s.color}10`, border: `1px solid ${s.color}30`, textAlign: 'center' }}>
-                <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{s.icon}</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.4rem' }}>{s.icon}</div>
                 <p style={{ fontSize: '1.5rem', fontWeight: 900, color: s.color }}>{s.value}</p>
                 <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{s.label}</p>
-                <p style={{ fontSize: '0.72rem', color: T.textGhost, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{s.label}</p>
               </div>
             ))}
           </div>
